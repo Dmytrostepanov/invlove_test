@@ -15,7 +15,7 @@ def generate_sign(keys_required, data_to_sign):
     sign = sha256(result.encode('utf-8')).hexdigest()
     return sign
 
-
+# Функция по проверке суммы
 def check_amount(amount):
     try:
         if float(amount) > 0:
@@ -24,7 +24,7 @@ def check_amount(amount):
     except Exception:
         return False
 
-
+# Функция по обработке запроса с euro
 def eur(app, data):
     app.logger.info('Обработка запроса в EUR')
     keys = ['amount', 'currency', 'shop_id', 'shop_order_id']  # Обязательные ключи
@@ -45,6 +45,7 @@ def eur(app, data):
                            sign=sign)
 
 
+# Функция по обработке запроса с usd
 def usd(app, data):
     app.logger.info('Обработка запроса в USD')
     keys = ['shop_amount', 'shop_currency', 'shop_id', 'shop_order_id', 'payer_currency']
@@ -74,6 +75,7 @@ def usd(app, data):
         return render_template("main.html")
 
 
+# Функция по обработке запроса с rub
 def rub(app, data):
     app.logger.info('Обработка запроса в RUB')
     keys = ["amount", 'currency', 'payway', 'shop_id', 'shop_order_id']

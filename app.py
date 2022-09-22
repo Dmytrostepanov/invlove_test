@@ -31,7 +31,7 @@ def ret_html():
         return render_template("main.html")
     else:
         app.logger.info('Обработка POST запроса')
-        # При отправке запроса на оплату срабатывает следующий код
+        # При отправке запроса на оплату
         try:
             data = dict(request.form)  # Достаю инфо из фласк запроса
             # Сохранение запроса в базе данных
@@ -51,6 +51,7 @@ def ret_html():
             elif data['currency'] == Currency.USD:
                 return usd(app, data)
 
+            # Задаю параметры для оплаты в rub
             elif data['currency'] == Currency.RUB:
                 return rub(app, data)
 
