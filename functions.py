@@ -104,3 +104,4 @@ def rub(app, data):
                                    lang=response['data']['data'].get('lang', 'ru'))
         app.logger.error(f'Получен неправильный ответ {response}')
     return render_template("main.html")
+
